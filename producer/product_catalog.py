@@ -2,12 +2,7 @@ from dataclasses import dataclass
 from typing import List
 import random
 
-@dataclass
-class Product:
-    product_id: str
-    product_name: str
-    category: str
-    price: float
+from producer.models.product import Product
 
 
 PRODUCTS: List[Product] = [
