@@ -2,15 +2,24 @@ from dataclasses import dataclass
 
 @dataclass(frozen=True)
 class Persona:
+    """
+    Represents a customer behaviour profile
+    """
 
-    name: str
-
-    purchase_probability: float
-
+    # Probability of performing a search before browsing
     search_probability: float
 
-    min_product_views: int
+    # Probability of purchasing after browsing
+    purchasing_probability: float
 
+    # Probability of adding a product to cart
+    add_to_cart_probability: float
+
+    # Number of products typically viewed
+    min_product_views: int
     max_product_views: int
 
-    avg_page_delay: int
+    # Typical delay between events (seconds)
+    min_delay: int
+    max_delay: int
+
