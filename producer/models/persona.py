@@ -5,12 +5,14 @@ class Persona:
     """
     Represents a customer behaviour profile
     """
+    persona_id: str
+    name: str
 
     # Probability of performing a search before browsing
     search_probability: float
 
     # Probability of purchasing after browsing
-    purchasing_probability: float
+    purchase_probability: float
 
     # Probability of adding a product to cart
     add_to_cart_probability: float

@@ -5,6 +5,7 @@ import random
 PERSONAS = {
 
     "casual_browser": Persona(
+        persona_id= "P001",
         name= "Casual Browser",
         search_probability= 0.20,
         purchase_probability= 0.05,
@@ -16,6 +17,7 @@ PERSONAS = {
     ),
 
     "window_shopper": Persona(
+        persona_id= "P002",
         name= "Window Shopper",
         search_probability=0.50,
         purchase_probability=0.10,
@@ -27,6 +29,7 @@ PERSONAS = {
     ),
 
     "serious_buyer": Persona(
+        persona_id= "P003",
         name= "Serious Buyer",
         search_probability=0.60,
         purchase_probability= 0.90,
@@ -38,6 +41,7 @@ PERSONAS = {
     ),
 
     "impulse_buyer": Persona(
+        persona_id= "P004",
         name="Impulse Buyer",
         search_probability=0.10,
         purchase_probability=0.95,
@@ -49,6 +53,7 @@ PERSONAS = {
     ),
 
     "returning_customer": Persona(
+        persona_id= "P005",
         name="Returning Customer",
         search_probability=0.05,
         purchase_probability= 0.80,
@@ -58,6 +63,14 @@ PERSONAS = {
         min_delay=10,
         max_delay=30,
     ),
+}
+
+PERSONA_WEIGHTS = {
+    "casual_browser": 35,
+    "window_shopper": 25,
+    "serious_buyer": 20,
+    "impulse_buyer": 10,
+    "returning_customer": 10,
 }
 
 
