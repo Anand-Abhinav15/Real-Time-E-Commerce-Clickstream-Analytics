@@ -14,5 +14,5 @@ class User:
     preferred_device: str
     preferred_browser: str
     created_at: datetime
-    total_session: int = 0
+    total_sessions: int = 0
 
