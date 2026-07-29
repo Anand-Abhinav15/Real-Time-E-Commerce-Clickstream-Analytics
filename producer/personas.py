@@ -1,6 +1,7 @@
 from producer.models.persona import Persona
 import random
 
+from producer.utils.random_utils import weighted_choice
 
 PERSONAS = {
 
@@ -76,11 +77,7 @@ PERSONA_WEIGHTS = {
 
 def get_random_persona():
 
-    persona_name= random.choices(
-        population= list(PERSONA_WEIGHTS.keys()),
-        weights= list(PERSONA_WEIGHTS.values()),
-        k=1,
-    )[0]
+    persona_name = weighted_choice(PERSONA_WEIGHTS)
 
     return PERSONAS[persona_name]
     
