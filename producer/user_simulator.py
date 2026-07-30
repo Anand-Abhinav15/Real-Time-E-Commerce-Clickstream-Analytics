@@ -12,13 +12,17 @@ from producer.utils.random_utils import (
     probability_check,
 )
 
+from configs.config import (
+    INITIAL_USER_POOL,
+    RETURNING_USER_PROBABILITY,
+)
+
 from producer.models.user import User
 
 class UserSimulator:
 
     def __init__(
         self,
-        initial_user_pool= 1000,
         returning_user_probability= 0.80,
     ):
 
