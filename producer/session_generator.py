@@ -1,41 +1,44 @@
 import random
 
-SESSION_PATTERNS = {
-    "browser": [
-        ("homepage", "homepage_view"),
-        ("category", "category_view"),
-        ("product", "product_view"),
-    ],
+from producer.models.persona import Persona
 
-    "buyer": [
-        ("homepage", "homepage_view"),
-        ("category", "category_view"),
-        ("product", "product_view"),
-        ("cart", "add_to_cart"),
-        ("checkout", "checkout"),
-        ("confirmation", "purchase"),
-    ],
 
-    "abondon_cart": [
-        ("homepage", "homepage_view"),
-        ("category", "category_view"),
-        ("product", "product_view"),
-        ("cart", "add_to_cart"),
-    ]
-}
-
-def generate_session_pattern():
+class SessionGenerator:
     """
-    Returns one realistic customer journey.
+    Builds a customer journey based on the selected persona.
     """
-    journey = random.choices(
-        population= ["browser", "buyer", "abondon_cart"],
-        weights= [50, 30, 20],
-        k= 1
-    )[0]
 
-    return journey, SESSION_PATTERNS[journey]
+    def generate_journey(self, persona: Persona):
 
+        journey = []
+
+        # Homepage
+        journey.append("homepage", "homepage_view")
+
+        # Optional Search
+        if random.random() < persona.search_probability:
+            journey.append(("search", "search"))
+
+        # Category Page
+        journey.append(("category", "category_view"))
+
+        # Product Views
+        num_products = random.randint(
+            persona.min_product_views,
+            persona.max_product_views,
+        )
+
+        for _ in range(num_products):
+            journey.append(("product", "product_view"))
+
+        # Cart
+        if random.random() < persona.add_to_cart_probability:
+            journey.append(("cart", "add_to_cart"))
+
+            # Checkout
+            if random.random() < persona.purchase_probability:
+                journey.append(("checkout", "checkout"))
+                journey.append(("payment", "purchase"))
     
 
 
