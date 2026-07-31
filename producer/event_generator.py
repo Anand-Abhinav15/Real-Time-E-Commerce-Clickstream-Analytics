@@ -39,7 +39,7 @@ class EventGenerator:
 
         events = []
 
-        current_products = None
+        current_product = None
 
         for page, event_type in journey:
 
@@ -52,10 +52,16 @@ class EventGenerator:
             # Search doesn't need a product
             if event_type == "search":
                 product = None
-            else:
-                # Product Page -> choose a product
-                if event_type == "product_view":
+            elif event_type == "product_view":
+                current_product = get_random_product()
+                product = current_product
+            elif event_type in ("add_to_cart", "checkout", "purchase"):
+                if current_product is None:
                     current_product = get_random_product()
+
+                product = current_product
+            else:
+                product = None
 
                 
                 # Cart / Checkout / Purchase should use
@@ -87,7 +93,7 @@ class EventGenerator:
                 })
 
 
-            if event_type == "purchase":
+            if event_type == "purchase" and product is not None:
 
                 quantity = random.randint(1,3)
                 event["quantity"] = quantity
@@ -95,7 +101,7 @@ class EventGenerator:
                     quantity*product.price, 2,
                 )
 
-            event.append(event)
+            events.append(event)
 
         return events
 

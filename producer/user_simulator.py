@@ -30,7 +30,7 @@ class UserSimulator:
         self.user_pool = {}
         self.next_user_number = 1000
 
-        for _ in range(initial_user_pool):
+        for _ in range(INITIAL_USER_POOL):
             self._create_new_user()
 
 
@@ -56,13 +56,6 @@ class UserSimulator:
             user = self._create_new_user()
         else:
             user = random.choice(list(self.user_pool.values()))
-
-        if create_new:
-            user = self._create_new_user()
-        else:
-            user = random.choice(
-                list(self.user_pool.values())
-            )
 
         user.total_sessions += 1
 
