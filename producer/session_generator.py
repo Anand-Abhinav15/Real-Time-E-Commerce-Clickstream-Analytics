@@ -39,6 +39,8 @@ class SessionGenerator:
             if random.random() < persona.purchase_probability:
                 journey.append(("checkout", "checkout"))
                 journey.append(("payment", "purchase"))
+
+        return journey
     
 
 

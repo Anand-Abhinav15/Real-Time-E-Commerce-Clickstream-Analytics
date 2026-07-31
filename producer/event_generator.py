@@ -2,95 +2,101 @@ import random
 import uuid
 from datetime import datetime, timedelta
 
+from producer.constants import (
+    EVENT_DELAYS,
+    TRAFFIC_SOURCES,
+)
+
+from producer.personas import get_random_persona
 from producer.product_catalog import get_random_product
-from producer.session_generator import generate_session_pattern
+from  producer.session_generator import SessionGenerator
+from producer.user_simulator import UserSimulator
+from producer.utils.random_utils import weighted_choice
 
-
-DEVICE_TYPES = [
-    "Mobile",
-    "Desktop",
-    "Tablet"
-]
-
-TRAFFIC_SOURCES = [
-    "Google",
-    "Facebook",
-    "Instagram",
-    "Direct",
-    "Organic"
-]
-
-COUNTRIES = [
-    "India",
-    "United States",
-    "United Kingdom",
-    "Germany",
-    "Canada"
-]
-
-BROWSERS = [
-    "Chrome",
-    "Edge",
-    "Firefox",
-    "Safari"
-]
 
 class EventGenerator:
 
     def __init__(self):
-        pass
+
+        self.user_simulator = UserSimulator()
+        self.session_generator = SessionGenerator()
 
     def generate_session(self):
-        """
-        Generates one complete user session.
-        Returns a list of clickstream events.
-        """
 
-        user_id = f"U{random.randint(1000, 9999)}"
+        user = self.user_simulator.get_user()
+
+        persona = get_random_persona()
+
+        journey = self.session_generator.generate_journey(persona)
+
         session_id = f"S{uuid.uuid4().hex[:10]}"
 
-        device = random.choice(DEVICE_TYPES)
-        source = random.choice(TRAFFIC_SOURCES)
-        country = random.choice(COUNTRIES)
-        browser = random.choice(BROWSERS)
-
-        journey_name, journey = generate_session_pattern()
-
-        product = get_random_product()
+        traffic_source = weighted_choice(TRAFFIC_SOURCES)
 
         current_time = datetime.utcnow()
 
+        elapsed_seconds = 0
+
         events = []
 
-        for index, (page, event_type) in enumerate(journey):
+        current_products = None
+
+        for page, event_type in journey:
+
+            delay_min, delay_max = EVENT_DELAYS[event_type]
+
+            elapsed_seconds += random.randint(delay_min, delay_max)
+
+            event_time = current_time + timedelta(seconds= elapsed_seconds)
+
+            # Search doesn't need a product
+            if event_type == "search":
+                product = None
+            else:
+                # Product Page -> choose a product
+                if event_type == "product_view":
+                    current_product = get_random_product()
+
+                
+                # Cart / Checkout / Purchase should use
+                # the last viewed product
+                product = current_product
+
 
             event = {
 
                 "event_id": str(uuid.uuid4()),
-                "event_time" : (
-                    current_time +
-                    timedelta(seconds=index*random.randint(3, 12))
-                ).isoformat(),
-                "user_id": user_id,
+                "event_time": event_time.isoformat(),
+                "user_id": user.user_id,
                 "session_id": session_id,
+                "persona": persona.name,
                 "page": page,
                 "event_type": event_type,
-                "product_id": product.product_id,
-                "product_name": product.product_name,
-                "category": product.category,
-                "price": product.price,
-                "device_type": device,
-                "traffic_source": source,
-                "country": country,
-                "browser": browser
-
+                "traffic_source": traffic_source,
+                "country": user.country,
+                "device_type": user.preferred_device,
+                "browser": user.preferred_browser,
             }
 
+            if product:
+                event.update({
+                    "product_id": product.product_id,
+                    "product_name": product.product_name,
+                    "category": product.category,
+                    "price": product.price,
+                })
+
+
+            if event_type == "purchase":
+
+                quantity = random.randint(1,3)
+                event["quantity"] = quantity
+                event["revenue"] = round(
+                    quantity*product.price, 2,
+                )
+
             event.append(event)
-        
+
         return events
-
-
-
 
 
