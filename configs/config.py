@@ -2,22 +2,18 @@
     Runtime configuration for the simulator
 """
 
-# ======================================
-# USER SIMULATION
-# ======================================
+# ==========================================
+# DATA QUALITY SIMULATION
+# ==========================================
 
-INITIAL_USER_POOL = 1000
-RETURNING_USER_PROBABILITY = 0.80
+ENABLE_BAD_DATA = False
 
-# ======================================
-# FEATURE FLAG
-# ======================================
+MISSING_USER_PROBABILITY = 0.01
 
-ENABLE_BAD_DATA = True
-ENABLE_LATE_EVENTS = True
+DUPLICATE_EVENT_PROBABILITY = 0.01
 
-# ======================================
-# EVENT GENERATION
-# ======================================
+INVALID_TIMESTAMP_PROBABILITY = 0.005
 
-EVENTS_PER_SECOND = 2
+MISSING_PRODUCT_PROBABILITY = 0.005
+
+LATE_EVENT_PROBABILITY = 0.05
