@@ -7,6 +7,8 @@ from producer.constants import (
     TRAFFIC_SOURCES,
 )
 
+from producer.bad_data import BadDataInjector
+
 from producer.personas import get_random_persona
 from producer.product_catalog import get_random_product
 from  producer.session_generator import SessionGenerator
@@ -101,7 +103,12 @@ class EventGenerator:
                     quantity*product.price, 2,
                 )
 
+            event = BadDataInjector.inject(event)
+
             events.append(event)
+
+            if BadDataInjector.should_duplicate():
+                events.append(event.copy())
 
         return events
 
