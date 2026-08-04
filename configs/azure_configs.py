@@ -14,3 +14,10 @@ GOLD_CONTAINER = "gold"
 
 CHECKPOINT_CONTAINER = "checkpoints"
 
+EVENTHUB_NAMESPACE = "ehns-clickstream-dev"
+
+EVENTHUB_NAME = "clickstream-events"
+
+EVENTHUB_CONSUMER_GROUP = "spark-streaming"
+
+EVENTHUB_CONNECTION_STRING = "<paste_here>"
