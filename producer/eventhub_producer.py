@@ -1,4 +1,4 @@
-# Add the producer code which will send data to eventhubs
+# Add the producer code which will send data to azure eventhubs
 
 
 
