@@ -3,6 +3,14 @@
 """
 
 # ==========================================
+# USER SIMULATION
+# ==========================================
+
+INITIAL_USER_POOL = 1000
+
+RETURNING_USER_PROBABILITY = 0.80
+
+# ==========================================
 # DATA QUALITY SIMULATION
 # ==========================================
 
@@ -17,3 +25,16 @@ INVALID_TIMESTAMP_PROBABILITY = 0.005
 MISSING_PRODUCT_PROBABILITY = 0.005
 
 LATE_EVENT_PROBABILITY = 0.05
+
+# ==========================================
+# FEATURE FLAGS
+# ==========================================
+
+ENABLE_LATE_EVENTS = True
+
+
+# ==========================================
+# EVENT GENERATION
+# ==========================================
+
+EVENTS_PER_SECOND = 2

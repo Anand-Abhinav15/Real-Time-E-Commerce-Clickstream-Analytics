@@ -1,13 +1,13 @@
 import random
 from datetime import timedelta, datetime
 
-from config.config import (
+from configs.config import (
     ENABLE_BAD_DATA,
-    MISSING_USER_PROBAIBLITY,
-    DUPLICATE_USER_PROBAIBLITY,
+    MISSING_USER_PROBABILITY,
+    DUPLICATE_EVENT_PROBABILITY,
     INVALID_TIMESTAMP_PROBABILITY,
-    MISSING_PRODUCT_PROBAIBLITY,
-    LATE_EVENT_PROBAIBLITY,
+    MISSING_PRODUCT_PROBABILITY,
+    LATE_EVENT_PROBABILITY,
 )
 
 class BadDataInjector:
