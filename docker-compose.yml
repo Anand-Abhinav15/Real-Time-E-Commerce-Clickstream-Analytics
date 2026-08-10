@@ -1,0 +1,22 @@
+services:
+
+  spark:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.spark
+
+    container_name: clickstream-spark
+
+    env_file:
+      - .env 
+
+    volumes:
+      - ./streaming:/app/streaming 
+      - ./configs:/app/configs 
+
+    command:
+      - /opt/spark/bin/spark-submit
+      - --packages
+      - com.microsoft.azure:azure-eventhubs-spark_2.12:2.3.22
+      - /app/streaming/spark_streaming_jobs.py
+
