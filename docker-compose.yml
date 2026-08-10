@@ -18,5 +18,5 @@ services:
       - /opt/spark/bin/spark-submit
       - --packages
       - com.microsoft.azure:azure-eventhubs-spark_2.12:2.3.22
-      - /app/streaming/spark_streaming_jobs.py
+      - /app/streaming/spark_streaming_job.py
 
