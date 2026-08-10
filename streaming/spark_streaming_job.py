@@ -46,6 +46,19 @@ eventhub_conf[
     .encrypt(EVENTHUB_CONNECTION_STRING)
 )
 
+# Connectivity Test - Stream start from the earliest available event so we can see the events already produced.
+starting_position = {
+    "offset": "-1",
+    "seqNo": -1,
+    "enqueuedTime": None,
+    "isInclusive": True,
+}
+
+eventhub_conf[
+    "eventhubs.startingPosition"
+] = json.dumps(starting_position)
+
+
 # Read stream from Azure Event Hubs
 events = (
     spark.readStream
