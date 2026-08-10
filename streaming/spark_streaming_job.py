@@ -38,3 +38,37 @@ eventhub_conf = {
 # Encrypt the connection string before passing
 # it into the Event Hubs connector.
 
+eventhub_conf[
+    "eventhubs.connectionString"
+] = (
+    spark._jvm
+    .org.apache.spark.eventhubs.EventHubsUtils
+    .encrypt(EVENTHUB_CONNECTION_STRING)
+)
+
+# Read stream from Azure Event Hubs
+events = (
+    spark.readStream
+    .format("eventhubs")
+    .options(**eventhub_conf)
+    .load()
+)
+
+# Event Hub body is binary
+events_text = events.selectExpr(
+    "CAST(body AS STRING) AS body"
+)
+
+query = (
+    events_text.writeStream
+    .format("console")
+    .outputMode("append")
+    .option("truncate", "false")
+    .option("checkpointLocation", "/tmp/clickstream-checkpoint")
+    .start()
+)
+
+query.awaitTermination()
+
+
+
