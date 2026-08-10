@@ -16,6 +16,8 @@ services:
 
     command:
       - /opt/spark/bin/spark-submit
+      - --repositories
+      - https://repo.maven.apache.org/maven2
       - --packages
       - com.microsoft.azure:azure-eventhubs-spark_2.12:2.3.22
       - /app/streaming/spark_streaming_job.py
