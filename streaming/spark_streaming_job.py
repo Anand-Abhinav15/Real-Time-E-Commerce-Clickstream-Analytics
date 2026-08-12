@@ -19,7 +19,15 @@ if not EVENTHUB_CONNECTION_STRING:
 
 spark = (
     SparkSession.builder
-    .appName("ClickstreamEventHubReader")
+    .appName("ClickstreamBronzeStreaming")
+    .config(
+        "spark.sql.extensions",
+        "io.delta.sql.DeltaSparkSessionExtension"
+    )
+    .config(
+        "spark.sql.catalog.spark_catalog",
+        "org.apache.spark.sql.delta.catalog.DeltaCatalog"
+    )
     .getOrCreate()
 )
 
