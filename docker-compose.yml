@@ -10,6 +10,10 @@ services:
     env_file:
       - .env 
 
+    environment:
+      AZURE_STORAGE_ACCOUNT: ${AZURE_STORAGE_ACCOUNT}
+      AZURE_STORAGE_KEY: ${AZURE_STORAGE_KEY}
+
     volumes:
       - ./streaming:/app/streaming 
       - ./configs:/app/configs 
@@ -20,6 +24,7 @@ services:
       - https://repo.maven.apache.org/maven2
       - --packages
       - com.microsoft.azure:azure-eventhubs-spark_2.12:2.3.22
+      - io.delta:delta-spark_2.12:3.2.0
       - /app/streaming/spark_streaming_job.py
 
 

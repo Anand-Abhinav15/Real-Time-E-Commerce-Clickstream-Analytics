@@ -16,3 +16,5 @@ checkpoints/
 *.parquet
 
 .DS_Store
+
+spark-warehouse/
