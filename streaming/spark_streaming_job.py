@@ -33,6 +33,17 @@ spark = (
 
 spark.sparkContext.setLogLevel("WARN")
 
+
+BRONZE_PATH = (
+    
+
+
+
+    
+)
+
+
+
 # Event Hubs connector configuration
 eventhub_conf = {
     "eventhubs.connectionString": (
