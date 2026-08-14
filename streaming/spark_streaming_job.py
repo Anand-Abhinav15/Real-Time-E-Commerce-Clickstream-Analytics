@@ -34,14 +34,20 @@ spark = (
 spark.sparkContext.setLogLevel("WARN")
 
 
+
+#ADLS Paths
+
 BRONZE_PATH = (
-    
-
-
-
-    
+    f"abfss://bronze@"
+    f"{STORAGE_ACCOUNT}.dfs.core.windows.net/"
+    f"clickstream"
 )
 
+CHECKPOINT_PATH = (
+    f"abfss://checkpoints@"
+    f"{STORAGE_ACCOUNT}.dfs.core.windows.net/"
+    f"clickstream"
+)
 
 
 # Event Hubs connector configuration
