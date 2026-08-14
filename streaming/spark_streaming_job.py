@@ -136,13 +136,21 @@ events_text = events.selectExpr(
     "CAST(body AS STRING) AS body"
 )
 
+
+#Event Schema
+
+
+
+
+
+#Write Bronze Delta
+
 query = (
-    events_text.writeStream
-    .format("console")
+    parsed_events.writeStream
+    .format("delta")
     .outputMode("append")
-    .option("truncate", "false")
-    .option("checkpointLocation", "/tmp/clickstream-checkpoint")
-    .start()
+    .option("checkpointLocation", CHECKPOINT_PATH)
+    .start(BRONZE_PATH)
 )
 
 query.awaitTermination()
