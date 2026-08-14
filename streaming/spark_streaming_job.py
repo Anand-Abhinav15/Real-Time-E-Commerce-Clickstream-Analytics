@@ -2,6 +2,16 @@ import os
 import json
 
 from pyspark.sql import SparkSession
+from pyspark.sql.functions import from_json, col, to_timestamp
+
+from pyspark.sql.types import (
+    StructType,
+    StructField,
+    StringType,
+    DoubleType,
+)
+
+# Environment Variables
 
 EVENTHUB_CONNECTION_STRING = os.getenv(
     "EVENTHUB_SPARK_CONNECTION_STRING"
@@ -16,6 +26,27 @@ if not EVENTHUB_CONNECTION_STRING:
     raise RuntimeError(
         "EVENTHUB_SPARK_CONNECTION_STRING is not set."
     )
+
+STORAGE_ACCOUNT = os.getenv(
+    "AZURE_STORAGE_ACCOUNT"
+)
+
+STORAGE_KEY = os.getenv(
+    "AZURE_STORAGE_KEY"
+)
+
+if not STORAGE_ACCOUNT:
+    raise RuntimeError(
+        "AZURE_STORAGE_ACCOUNT is not set."
+    )
+
+if not STORAGE_KEY:
+    raise RuntimeError(
+        "AZURE_STORAGE_KEY is not set."
+    )
+
+
+#Spark Session
 
 spark = (
     SparkSession.builder
@@ -33,6 +64,14 @@ spark = (
 
 spark.sparkContext.setLogLevel("WARN")
 
+
+#ADLS Authentication
+
+spark.conf.set(
+    f"fs.azure.account.key."
+    f"{STORAGE_ACCOUNT}.dfs.core.windows.net",
+    STORAGE_KEY
+)
 
 
 #ADLS Paths
