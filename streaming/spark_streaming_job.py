@@ -140,6 +140,8 @@ events_text = events.selectExpr(
 #Event Schema
 
 event_schema = StructType ([
+
+
     
 ])
 
