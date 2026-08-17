@@ -157,7 +157,12 @@ event_schema = StructType ([
     StructField("price", DoubleType(), True),
 ])
 
+parsed_events = (events_text \
+                .select(from_json(col("body"), event_schema).alias("event")) \
+                .select("event.*") \
+            )
 
+parsed_events = parsed_events.withColumn("event_time", to_timestamp("event_time"))
 
 #Write Bronze Delta
 
