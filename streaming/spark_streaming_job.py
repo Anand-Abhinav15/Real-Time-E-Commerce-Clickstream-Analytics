@@ -140,11 +140,21 @@ events_text = events.selectExpr(
 #Event Schema
 
 event_schema = StructType ([
-
-
-
-
-    
+    StructField("event_id", StringType(), True),
+    StructField("event_time", StringType(), True),
+    StructField("user_id", StringType(), True),
+    StructField("session_id", StringType(), True),
+    StructField("persona", StringType(), True),
+    StructField("page", StringType(), True),
+    StructField("event_type", StringType(), True),
+    StructField("traffic_source", StringType(), True),
+    StructField("country", StringType(), True),
+    StructField("device_type", StringType(), True),
+    StructField("browser", StringType(), True),
+    StructField("product_id", StringType(), True),
+    StructField("product_name", StringType(), True),
+    StructField("category", StringType(), True),
+    StructField("price", DoubleType(), True),
 ])
 
 
