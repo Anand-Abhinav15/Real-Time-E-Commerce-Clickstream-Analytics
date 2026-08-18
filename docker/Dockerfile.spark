@@ -7,8 +7,4 @@ WORKDIR /app
 COPY streaming /app/streaming
 COPY configs /app/configs
 
-CMD ["spark-submit", "/app/streaming/spark_streaming_job.py"]
-
-
-
-
+CMD ["/opt/spark/bin/spark-submit", "/app/streaming/spark_streaming_job.py"]

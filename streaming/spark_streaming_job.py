@@ -28,7 +28,7 @@ if not EVENTHUB_CONNECTION_STRING:
     )
 
 STORAGE_ACCOUNT = os.getenv(
-    "AZURE_STORAGE_ACCOUNT"
+    "STORAGE_ACCOUNT"
 )
 
 STORAGE_KEY = os.getenv(
@@ -37,7 +37,7 @@ STORAGE_KEY = os.getenv(
 
 if not STORAGE_ACCOUNT:
     raise RuntimeError(
-        "AZURE_STORAGE_ACCOUNT is not set."
+        "STORAGE_ACCOUNT is not set."
     )
 
 if not STORAGE_KEY:
