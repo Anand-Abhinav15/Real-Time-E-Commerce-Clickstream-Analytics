@@ -49,3 +49,27 @@ QUARANTINE_CHECKPOINT_PATH = (
 
 #Spark Session
 
+spark = (
+    SparkSession.builder
+    .appName("ClickStreamSilverStreaming")
+    .config("spark.sql.extensions", "io.delta.sql.DeltaSparkSessionExtention")
+    .config("spark.sql.catalog.spark_catalog", "org.apache.spark.sql.delta.catalog.DeltaCatalog")
+    .getOrCreate()
+)
+
+spark.sparkContext.setLogLevel("WARN")
+
+#ADLS Authentication
+
+spark.conf.set(
+    f"fs.azure.account.key."
+    f"{STORAGE_ACCOUNT}.dfs.core.windows.net", STORAGE_KEY 
+)
+
+#Read Bronze Stream
+
+
+
+
+
+
