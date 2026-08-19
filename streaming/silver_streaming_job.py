@@ -68,6 +68,42 @@ spark.conf.set(
 
 #Read Bronze Stream
 
+bronze_df = (
+    spark.readStream.format("delta").load(BRONZE_PATH)
+)
+
+#Validation
+
+invalid_condition = (
+    col("event_id").isNull()
+    | col("user_id").isNull()
+    | col("session_id").isNull()
+    | col("event_time").isNull()
+    | col("event_type").isNull()
+)
+
+#Quarantine Invalid Records
+
+quarantine_df = (
+    bronze_df
+    .filter(invalid_condition)
+    .withColumn("quarantine_reason", 
+        when(col("event_id").isNull(), "missing_event_id")
+        .when(col("user_id").isNull(), "missing_user_id")
+        .when(col("session_id").isNull(), "missing_session_id")
+        .when(col("event_time").isNull(), "missing_event_time")
+        .when(col("event_type").isNull(), "missing_event_type")
+        .otherwise("unknown")
+    )
+)
+
+quarantine_query = (
+    quarantine_df.writeStream 
+    .format("delta")
+    .outputMode("append")
+    .option("checkpointLocation", QUARANTINE_CHECKPOINT_PATH)
+    .start(QUARANTINE_PATH)
+)
 
 
 
