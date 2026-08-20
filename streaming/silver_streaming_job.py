@@ -105,6 +105,44 @@ quarantine_query = (
     .start(QUARANTINE_PATH)
 )
 
+#Valid Records
+
+valid_df = (bronze_df.filter(~invalid_condition))
+
+#Watermark + Deduplication
+
+silver_df = (
+    valid_df 
+    .withWatermark("event_time", "10 minutes")
+    .dropDuplicates(["event_id"])
+)
+
+#Standardization
+
+silver_df = (
+    silver_df 
+    .withColumn("device_type", lower(trim(col("device_type"))))
+    .withColumn("traffic_source", lower(trim(col("traffic_source"))))
+    .withColumn("country", trim(col("country")))
+    .withColumn("browser", lower(trim(col("browser"))))
+    .withColumn("page", lower(trim(col("page"))))
+    .withColumn("event_type", lower(trim(col("event_type"))))
+)
+
+#Write Silver
+
+silver_query = (
+    silver_df.writeStream
+    .format("delta")
+    .outputMode("append")
+    .option("checkpointLocation", SILVER_CHECKPOINT_PATH)
+    .start(SILVER_PATH) 
+)
+
+#Wait for Streams
+
+spark.streams.awaitAnyTermination()
+
 
 
 
