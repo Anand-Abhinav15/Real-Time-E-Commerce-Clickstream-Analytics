@@ -17,3 +17,30 @@ services:
       /opt/spark/bin/spark-submit
       --packages com.microsoft.azure:azure-eventhubs-spark_2.12:2.3.22,io.delta:delta-spark_2.12:3.2.0,org.apache.hadoop:hadoop-azure:3.3.4,org.apache.hadoop:hadoop-azure-datalake:3.3.4
       /app/streaming/spark_streaming_job.py
+
+
+  silver:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.spark 
+
+    container_name: clickstream-silver 
+
+    env_file:
+      - .env 
+    
+    environment:
+      AZURE_STORAGE_ACCOUNT: ${AZURE_STORAGE_ACCOUNT}
+      AZURE_STORAGE_KEY: ${AZURE_STORAGE_KEY}
+
+    volumes:
+      - ./streaming:/app/streaming 
+      - ./configs:/app/configs
+
+    command:
+      - /opt/spark/bin/spark-submit 
+      - --packages 
+      - com.microsoft.azure:azure-eventhubs-spark_2.12:2.3.22,io.delta:delta-spark_2.12:3.2.0,org.apache.hadoop:hadoop-azure:3.3.4,org.apache.hadoop:hadoop-azure-datalake:3.3.4
+      - /app/streaming/silver_streaming_job.py
+
+      
