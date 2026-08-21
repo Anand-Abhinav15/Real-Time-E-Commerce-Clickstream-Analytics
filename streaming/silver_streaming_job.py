@@ -6,11 +6,11 @@ from pyspark.sql.functions import lower, trim, col, when
 
 #Environment
 
-STORAGE_ACCOUNT = os.getenv("AZURE_STORAGE_ACCOUNT")
+STORAGE_ACCOUNT = os.getenv("STORAGE_ACCOUNT")
 STORAGE_KEY = os.getenv("AZURE_STORAGE_KEY")
 
 if not STORAGE_ACCOUNT:
-    raise RuntimeError("AZURE_STORAGE_ACCOUNT is not set.")
+    raise RuntimeError("STORAGE_ACCOUNT is not set.")
 
 if not STORAGE_KEY:
     raise RuntimeError("AZURE_STORAGE_KEY is not set.")
