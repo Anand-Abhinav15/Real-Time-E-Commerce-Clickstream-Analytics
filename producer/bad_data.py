@@ -26,7 +26,7 @@ class BadDataInjector:
         # Missing Product
         if (
             "product_id" in event
-            and random.random() < MISSING_PRODUCT_PROBAIBLITY
+            and random.random() < MISSING_PRODUCT_PROBABILITY
         ):
             event["product_id"] = None
 
