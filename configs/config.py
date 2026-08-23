@@ -30,7 +30,7 @@ LATE_EVENT_PROBABILITY = 0.05
 # FEATURE FLAGS
 # ==========================================
 
-ENABLE_LATE_EVENTS = True
+ENABLE_LATE_EVENTS = False
 
 
 # ==========================================
