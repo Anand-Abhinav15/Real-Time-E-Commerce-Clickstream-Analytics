@@ -38,6 +38,20 @@ GOLD_PRODUCT_CHECKPOINT = (
 
 #Spark Session
 
+spark = (
+    SparkSession.builder
+    .appName("ClickStreamGoldProductTrends")
+    .config("spark.sql.extensions", "io.delta.sql.DeltaSparkSessionExtension")
+    .config("spark.sql.catalog.spark_catalog", "org.apache.spark.sql.delta.catalog.DeltaCatalog")
+    .getOrCreate()
+)
+
+spark.sparkContext.setLogLevel("WARN")
+
+
+#ADLS Authentication
+
+
 
 
 
