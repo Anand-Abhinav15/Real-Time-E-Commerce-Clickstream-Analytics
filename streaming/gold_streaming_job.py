@@ -89,5 +89,20 @@ gold_df = (
 )
 
 
+#Write Gold
+
+gold_query = (
+   gold_df
+   .writeStream
+   .format("delta")
+   .outputMode("append")
+   .option("checkpointLocation", GOLD_PRODUCT_CHECKPOINT)
+   .start(GOLD_PRODUCT_PATH)
+)
+
+
+#Wait
+
+gold_query.awaitTermination()
 
 
