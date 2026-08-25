@@ -67,6 +67,27 @@ silver_df = (
 
 #Event-Time Processing
 
+gold_df = (
+    silver_df
+    .withWatermark("event_time", "10 minutes")
+    .groupBy(
+        window(col("event_time"), "5 minutes"),
+        col("product_id"),
+        col("product_name"),
+        col("category")
+    )
+    .agg(
+        count(when(col("event_type") == "product_view", True))
+            .alias("product_views"),
+        count(when(col("event_type") == "add_to_cart", True))
+            .alias("add_to_cart"),
+        count(when(col("event_type") == "purchase", True))
+            .alias("purchases"),
+        sum(when(col("event_type") == "purchase", col("revenue")).otherwise(0))
+            .alias("revenue")
+    )
+)
+
 
 
 
