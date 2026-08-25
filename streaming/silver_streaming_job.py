@@ -112,7 +112,8 @@ valid_df = (bronze_df.filter(~invalid_condition))
 #Watermark + Deduplication
 
 silver_df = (
-    valid_df 
+    valid_df
+    .withColumn("event_time", to_timestamp(col("event_time")))
     .withWatermark("event_time", "10 minutes")
     .dropDuplicates(["event_id"])
 )
