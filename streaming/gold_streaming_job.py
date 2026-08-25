@@ -59,6 +59,14 @@ spark.conf.set(
 
 #Read Silver
 
+silver_df = (
+    spark.readStream
+    .format("delta").load(SILVER_PATH)
+)
+
+
+#Event-Time Processing
+
 
 
 
