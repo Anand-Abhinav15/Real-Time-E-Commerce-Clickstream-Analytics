@@ -51,6 +51,13 @@ spark.sparkContext.setLogLevel("WARN")
 
 #ADLS Authentication
 
+spark.conf.set(
+    f"fs.azure.account.key."
+    f"{STORAGE_ACCOUNT}.dfs.core.windows.net", STORAGE_KEY
+)
+
+
+#Read Silver
 
 
 
