@@ -43,4 +43,23 @@ services:
       - com.microsoft.azure:azure-eventhubs-spark_2.12:2.3.22,io.delta:delta-spark_2.12:3.2.0,org.apache.hadoop:hadoop-azure:3.3.4,org.apache.hadoop:hadoop-azure-datalake:3.3.4
       - /app/streaming/silver_streaming_job.py
 
+  gold:
+    build:
+      context: .
+      dockerfile: dockerfile/Dockerfile.spark 
+    
+    container_name: clickstream-gold 
 
+    env_file:
+      - .env 
+
+    volumes:
+      - ./streaming:/app/streaming 
+      - ./configs:/app/configs 
+
+    command:
+      - /opt/spark/bin/spark-submit 
+      - /app/streaming/gold_streaming_job.py 
+
+    depends_on:
+      - clickstream-silver 
