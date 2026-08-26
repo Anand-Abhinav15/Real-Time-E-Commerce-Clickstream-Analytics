@@ -46,20 +46,26 @@ services:
   gold:
     build:
       context: .
-      dockerfile: dockerfile/Dockerfile.spark 
+      dockerfile: docker/Dockerfile.spark 
     
     container_name: clickstream-gold 
 
     env_file:
       - .env 
 
+    environment:
+      AZURE_STORAGE_ACCOUNT: ${STORAGE_ACCOUNT}
+      AZURE_STORAGE_KEY: ${AZURE_STORAGE_KEY}
+
     volumes:
       - ./streaming:/app/streaming 
       - ./configs:/app/configs 
 
     command:
-      - /opt/spark/bin/spark-submit 
-      - /app/streaming/gold_streaming_job.py 
+      - /opt/spark/bin/spark-submit
+      - --packages
+      - io.delta:delta-spark_2.12:3.2.0,org.apache.hadoop:hadoop-azure:3.3.4,org.apache.hadoop:hadoop-azure-datalake:3.3.4
+      - /app/streaming/gold_streaming_job.py
 
     depends_on:
-      - clickstream-silver 
+      - silver
