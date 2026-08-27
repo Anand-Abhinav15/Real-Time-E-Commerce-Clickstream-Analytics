@@ -83,7 +83,7 @@ gold_df = (
             .alias("add_to_cart"),
         count(when(col("event_type") == "purchase", True))
             .alias("purchases"),
-        sum(when(col("event_type") == "purchase", col("revenue")).otherwise(0))
+        sum(when(col("event_type") == "purchase", col("price")).otherwise(0))
             .alias("revenue")
     )
 )
