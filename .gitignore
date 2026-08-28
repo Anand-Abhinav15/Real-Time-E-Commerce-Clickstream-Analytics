@@ -17,4 +17,4 @@ checkpoints/
 
 .DS_Store
 
-spark-warehouse/
+spark-warehouse/compose_resolved.txt
