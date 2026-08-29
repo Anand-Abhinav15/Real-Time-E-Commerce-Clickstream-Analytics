@@ -105,6 +105,3 @@ gold_query = (
 
 gold_query.awaitTermination()
 
-
-
-
