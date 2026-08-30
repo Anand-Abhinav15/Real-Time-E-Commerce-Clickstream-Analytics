@@ -104,4 +104,3 @@ gold_query = (
 #Wait
 
 gold_query.awaitTermination()
-
