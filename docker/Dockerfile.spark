@@ -45,7 +45,14 @@ RUN curl -fL \
     https://repo1.maven.org/maven2/com/microsoft/azure/azure-eventhubs/3.3.0/azure-eventhubs-3.3.0.jar \
     -o /opt/spark/jars/azure-eventhubs-3.3.0.jar
 
+RUN curl -fL \
+    https://repo1.maven.org/maven2/org/scala-lang/modules/scala-java8-compat_2.12/1.0.2/scala-java8-compat_2.12-1.0.2.jar \
+    -o /opt/spark/jars/scala-java8-compat_2.12-1.0.2.jar
 
+RUN curl -fL \
+    https://repo1.maven.org/maven2/org/apache/qpid/proton-j/0.33.8/proton-j-0.33.8.jar \
+    -o /opt/spark/jars/proton-j-0.33.8.jar
+    
 # ============================================================
 # Default command
 # ============================================================
