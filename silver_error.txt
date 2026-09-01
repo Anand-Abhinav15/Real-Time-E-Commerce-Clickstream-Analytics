@@ -1,0 +1,119 @@
+Traceback (most recent call last):
+  File "/app/streaming/silver_streaming_job.py", line 72, in <module>
+    spark.readStream.format("delta").load(BRONZE_PATH)
+  File "/opt/spark/python/lib/pyspark.zip/pyspark/sql/streaming/readwriter.py", line 302, in load
+  File "/opt/spark/python/lib/py4j-0.10.9.7-src.zip/py4j/java_gateway.py", line 1322, in __call__
+  File "/opt/spark/python/lib/pyspark.zip/pyspark/errors/exceptions/captured.py", line 179, in deco
+  File "/opt/spark/python/lib/py4j-0.10.9.7-src.zip/py4j/protocol.py", line 326, in get_return_value
+py4j.protocol.Py4JJavaError: An error occurred while calling o30.load.
+: com.google.common.util.concurrent.ExecutionError: java.lang.NoClassDefFoundError: io/delta/storage/LogStore
+Please ensure that the delta-storage dependency is included.
+
+If using Python, please ensure you call `configure_spark_with_delta_pip` or use
+`--packages io.delta:delta-spark_<scala-version>:<delta-lake-version>`.
+See https://docs.delta.io/latest/quick-start.html#python.
+
+More information about this dependency and how to include it can be found here:
+https://docs.delta.io/latest/porting.html#delta-lake-1-1-or-below-to-delta-lake-1-2-or-above.
+
+	at com.google.common.cache.LocalCache$Segment.get(LocalCache.java:2261)
+	at com.google.common.cache.LocalCache.get(LocalCache.java:4000)
+	at com.google.common.cache.LocalCache$LocalManualCache.get(LocalCache.java:4789)
+	at org.apache.spark.sql.delta.DeltaLog$.getDeltaLogFromCache$1(DeltaLog.scala:865)
+	at org.apache.spark.sql.delta.DeltaLog$.apply(DeltaLog.scala:875)
+	at org.apache.spark.sql.delta.DeltaLog$.apply(DeltaLog.scala:784)
+	at org.apache.spark.sql.delta.DeltaLog$.forTable(DeltaLog.scala:756)
+	at org.apache.spark.sql.delta.DeltaLog$.$anonfun$forTableWithSnapshot$2(DeltaLog.scala:793)
+	at org.apache.spark.sql.delta.DeltaLog$.withFreshSnapshot(DeltaLog.scala:816)
+	at org.apache.spark.sql.delta.DeltaLog$.forTableWithSnapshot(DeltaLog.scala:793)
+	at org.apache.spark.sql.delta.sources.DeltaDataSource.sourceSchema(DeltaDataSource.scala:91)
+	at org.apache.spark.sql.execution.datasources.DataSource.sourceSchema(DataSource.scala:233)
+	at org.apache.spark.sql.execution.datasources.DataSource.sourceInfo$lzycompute(DataSource.scala:118)
+	at org.apache.spark.sql.execution.datasources.DataSource.sourceInfo(DataSource.scala:118)
+	at org.apache.spark.sql.execution.streaming.StreamingRelation$.apply(StreamingRelation.scala:36)
+	at org.apache.spark.sql.streaming.DataStreamReader.loadInternal(DataStreamReader.scala:169)
+	at org.apache.spark.sql.streaming.DataStreamReader.load(DataStreamReader.scala:212)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.base/java.lang.reflect.Method.invoke(Unknown Source)
+	at py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:244)
+	at py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:374)
+	at py4j.Gateway.invoke(Gateway.java:282)
+	at py4j.commands.AbstractCommand.invokeMethod(AbstractCommand.java:132)
+	at py4j.commands.CallCommand.execute(CallCommand.java:79)
+	at py4j.ClientServerConnection.waitForCommands(ClientServerConnection.java:182)
+	at py4j.ClientServerConnection.run(ClientServerConnection.java:106)
+	at java.base/java.lang.Thread.run(Unknown Source)
+Caused by: java.lang.NoClassDefFoundError: io/delta/storage/LogStore
+Please ensure that the delta-storage dependency is included.
+
+If using Python, please ensure you call `configure_spark_with_delta_pip` or use
+`--packages io.delta:delta-spark_<scala-version>:<delta-lake-version>`.
+See https://docs.delta.io/latest/quick-start.html#python.
+
+More information about this dependency and how to include it can be found here:
+https://docs.delta.io/latest/porting.html#delta-lake-1-1-or-below-to-delta-lake-1-2-or-above.
+
+	at org.apache.spark.sql.delta.DeltaErrorsBase.missingDeltaStorageJar(DeltaErrors.scala:2740)
+	at org.apache.spark.sql.delta.DeltaErrorsBase.missingDeltaStorageJar$(DeltaErrors.scala:2737)
+	at org.apache.spark.sql.delta.DeltaErrors$.missingDeltaStorageJar(DeltaErrors.scala:3382)
+	at org.apache.spark.sql.delta.storage.DelegatingLogStore$.<init>(DelegatingLogStore.scala:163)
+	at org.apache.spark.sql.delta.storage.DelegatingLogStore$.<clinit>(DelegatingLogStore.scala)
+	at org.apache.spark.sql.delta.storage.DelegatingLogStore.$anonfun$schemeBasedLogStore$1(DelegatingLogStore.scala:67)
+	at scala.Option.orElse(Option.scala:447)
+	at org.apache.spark.sql.delta.storage.DelegatingLogStore.schemeBasedLogStore(DelegatingLogStore.scala:67)
+	at org.apache.spark.sql.delta.storage.DelegatingLogStore.getDelegate(DelegatingLogStore.scala:85)
+	at org.apache.spark.sql.delta.storage.DelegatingLogStore.read(DelegatingLogStore.scala:96)
+	at org.apache.spark.sql.delta.Checkpoints.$anonfun$loadMetadataFromFile$1(Checkpoints.scala:376)
+	at org.apache.spark.sql.delta.metering.DeltaLogging.recordFrameProfile(DeltaLogging.scala:168)
+	at org.apache.spark.sql.delta.metering.DeltaLogging.recordFrameProfile$(DeltaLogging.scala:166)
+	at org.apache.spark.sql.delta.DeltaLog.recordFrameProfile(DeltaLog.scala:74)
+	at org.apache.spark.sql.delta.metering.DeltaLogging.$anonfun$recordDeltaOperationInternal$1(DeltaLogging.scala:136)
+	at com.databricks.spark.util.DatabricksLogging.recordOperation(DatabricksLogging.scala:128)
+	at com.databricks.spark.util.DatabricksLogging.recordOperation$(DatabricksLogging.scala:117)
+	at org.apache.spark.sql.delta.DeltaLog.recordOperation(DeltaLog.scala:74)
+	at org.apache.spark.sql.delta.metering.DeltaLogging.recordDeltaOperationInternal(DeltaLogging.scala:135)
+	at org.apache.spark.sql.delta.metering.DeltaLogging.recordDeltaOperation(DeltaLogging.scala:125)
+	at org.apache.spark.sql.delta.metering.DeltaLogging.recordDeltaOperation$(DeltaLogging.scala:115)
+	at org.apache.spark.sql.delta.DeltaLog.recordDeltaOperation(DeltaLog.scala:74)
+	at org.apache.spark.sql.delta.Checkpoints.loadMetadataFromFile(Checkpoints.scala:375)
+	at org.apache.spark.sql.delta.Checkpoints.readLastCheckpointFile(Checkpoints.scala:369)
+	at org.apache.spark.sql.delta.Checkpoints.readLastCheckpointFile$(Checkpoints.scala:368)
+	at org.apache.spark.sql.delta.DeltaLog.readLastCheckpointFile(DeltaLog.scala:74)
+	at org.apache.spark.sql.delta.SnapshotManagement.$anonfun$getSnapshotAtInit$2(SnapshotManagement.scala:575)
+	at org.apache.spark.sql.delta.metering.DeltaLogging.recordFrameProfile(DeltaLogging.scala:168)
+	at org.apache.spark.sql.delta.metering.DeltaLogging.recordFrameProfile$(DeltaLogging.scala:166)
+	at org.apache.spark.sql.delta.DeltaLog.recordFrameProfile(DeltaLog.scala:74)
+	at org.apache.spark.sql.delta.SnapshotManagement.$anonfun$getSnapshotAtInit$1(SnapshotManagement.scala:573)
+	at org.apache.spark.sql.delta.SnapshotManagement.withSnapshotLockInterruptibly(SnapshotManagement.scala:78)
+	at org.apache.spark.sql.delta.SnapshotManagement.withSnapshotLockInterruptibly$(SnapshotManagement.scala:75)
+	at org.apache.spark.sql.delta.DeltaLog.withSnapshotLockInterruptibly(DeltaLog.scala:74)
+	at org.apache.spark.sql.delta.SnapshotManagement.getSnapshotAtInit(SnapshotManagement.scala:573)
+	at org.apache.spark.sql.delta.SnapshotManagement.getSnapshotAtInit$(SnapshotManagement.scala:572)
+	at org.apache.spark.sql.delta.DeltaLog.getSnapshotAtInit(DeltaLog.scala:74)
+	at org.apache.spark.sql.delta.SnapshotManagement.$init$(SnapshotManagement.scala:69)
+	at org.apache.spark.sql.delta.DeltaLog.<init>(DeltaLog.scala:80)
+	at org.apache.spark.sql.delta.DeltaLog$.$anonfun$apply$4(DeltaLog.scala:853)
+	at org.apache.spark.sql.catalyst.plans.logical.AnalysisHelper$.allowInvokingTransformsInAnalyzer(AnalysisHelper.scala:323)
+	at org.apache.spark.sql.delta.DeltaLog$.$anonfun$apply$3(DeltaLog.scala:848)
+	at org.apache.spark.sql.delta.metering.DeltaLogging.recordFrameProfile(DeltaLogging.scala:168)
+	at org.apache.spark.sql.delta.metering.DeltaLogging.recordFrameProfile$(DeltaLogging.scala:166)
+	at org.apache.spark.sql.delta.DeltaLog$.recordFrameProfile(DeltaLog.scala:651)
+	at org.apache.spark.sql.delta.metering.DeltaLogging.$anonfun$recordDeltaOperationInternal$1(DeltaLogging.scala:136)
+	at com.databricks.spark.util.DatabricksLogging.recordOperation(DatabricksLogging.scala:128)
+	at com.databricks.spark.util.DatabricksLogging.recordOperation$(DatabricksLogging.scala:117)
+	at org.apache.spark.sql.delta.DeltaLog$.recordOperation(DeltaLog.scala:651)
+	at org.apache.spark.sql.delta.metering.DeltaLogging.recordDeltaOperationInternal(DeltaLogging.scala:135)
+	at org.apache.spark.sql.delta.metering.DeltaLogging.recordDeltaOperation(DeltaLogging.scala:125)
+	at org.apache.spark.sql.delta.metering.DeltaLogging.recordDeltaOperation$(DeltaLogging.scala:115)
+	at org.apache.spark.sql.delta.DeltaLog$.recordDeltaOperation(DeltaLog.scala:651)
+	at org.apache.spark.sql.delta.DeltaLog$.createDeltaLog$1(DeltaLog.scala:847)
+	at org.apache.spark.sql.delta.DeltaLog$.$anonfun$apply$5(DeltaLog.scala:866)
+	at com.google.common.cache.LocalCache$LocalManualCache$1.load(LocalCache.java:4792)
+	at com.google.common.cache.LocalCache$LoadingValueReference.loadFuture(LocalCache.java:3599)
+	at com.google.common.cache.LocalCache$Segment.loadSync(LocalCache.java:2379)
+	at com.google.common.cache.LocalCache$Segment.lockedGetOrLoad(LocalCache.java:2342)
+	at com.google.common.cache.LocalCache$Segment.get(LocalCache.java:2257)
+	... 28 more
+
