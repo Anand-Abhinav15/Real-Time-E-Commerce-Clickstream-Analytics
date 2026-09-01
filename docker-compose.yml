@@ -15,7 +15,6 @@ services:
 
     command: >
       /opt/spark/bin/spark-submit
-      --packages com.microsoft.azure:azure-eventhubs-spark_2.12:2.3.22,io.delta:delta-spark_2.12:3.2.0,org.apache.hadoop:hadoop-azure:3.3.4,org.apache.hadoop:hadoop-azure-datalake:3.3.4
       /app/streaming/spark_streaming_job.py
 
 
@@ -38,9 +37,7 @@ services:
       - ./configs:/app/configs
 
     command:
-      - /opt/spark/bin/spark-submit 
-      - --packages 
-      - com.microsoft.azure:azure-eventhubs-spark_2.12:2.3.22,io.delta:delta-spark_2.12:3.2.0,org.apache.hadoop:hadoop-azure:3.3.4,org.apache.hadoop:hadoop-azure-datalake:3.3.4
+      - /opt/spark/bin/spark-submit
       - /app/streaming/silver_streaming_job.py
 
   gold:
@@ -63,8 +60,6 @@ services:
 
     command:
       - /opt/spark/bin/spark-submit
-      - --packages
-      - io.delta:delta-spark_2.12:3.2.0,org.apache.hadoop:hadoop-azure:3.3.4,org.apache.hadoop:hadoop-azure-datalake:3.3.4
       - /app/streaming/gold_streaming_job.py
 
     depends_on:
