@@ -7,4 +7,21 @@ WORKDIR /app
 COPY streaming /app/streaming
 COPY configs /app/configs
 
+# Download required Spark/Delta/Azure JARs during image build
+RUN curl -fL \
+    https://repo1.maven.org/maven2/io/delta/delta-spark_2.12/3.2.0/delta-spark_2.12-3.2.0.jar \
+    -o /opt/spark/jars/delta-spark_2.12-3.2.0.jar
+
+RUN curl -fL \
+    https://repo1.maven.org/maven2/org/apache/hadoop/hadoop-azure/3.3.4/hadoop-azure-3.3.4.jar \
+    -o /opt/spark/jars/hadoop-azure-3.3.4.jar
+
+RUN curl -fL \
+    https://repo1.maven.org/maven2/org/apache/hadoop/hadoop-azure-datalake/3.3.4/hadoop-azure-datalake-3.3.4.jar \
+    -o /opt/spark/jars/hadoop-azure-datalake-3.3.4.jar
+
+RUN curl -fL \
+    https://repo1.maven.org/maven2/com/microsoft/azure/azure-eventhubs-spark_2.12/2.3.22/azure-eventhubs-spark_2.12-2.3.22.jar \
+    -o /opt/spark/jars/azure-eventhubs-spark_2.12-2.3.22.jar
+
 CMD ["/opt/spark/bin/spark-submit", "/app/streaming/spark_streaming_job.py"]
