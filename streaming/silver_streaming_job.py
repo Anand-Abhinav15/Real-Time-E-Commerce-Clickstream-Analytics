@@ -1,7 +1,7 @@
 import os 
 
 from pyspark.sql import SparkSession
-from pyspark.sql.functions import lower, trim, col, when
+from pyspark.sql.functions import lower, trim, col, when, to_timestamp
 
 
 #Environment
