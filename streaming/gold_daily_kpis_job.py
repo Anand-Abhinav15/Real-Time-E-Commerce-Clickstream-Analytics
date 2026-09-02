@@ -1,7 +1,7 @@
 import os
 
 from pyspark.sql import SparkSession
-from pyspark.sql.functions import col, count, sum, when, window
+from pyspark.sql.functions import col, count, approx_count_distinct, sum, when, window
 
 #Environment
 
@@ -76,7 +76,9 @@ daily_kpis_df = (
         count(when(col("event_type") == "product_view", True)).alias("product_views"),
         count(when(col("event_type") == "add_to_cart", True)).alias("add_to_cart"),
         count(when(col("event_type") == "purchase", True)).alias("purchases"),
-        sum(when(col("event_type") == "purchase", col("price")).otherwise(0)).alias("revenue")
+        sum(when(col("event_type") == "purchase", col("price")).otherwise(0)).alias("revenue"),
+        approx_count_distinct("user_id").alias("unique_users"),
+        approx_count_distinct("session_id").alias("unique_sessions")
     )
 )
 
