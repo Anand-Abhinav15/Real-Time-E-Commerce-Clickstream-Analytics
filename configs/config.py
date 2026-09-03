@@ -37,4 +37,4 @@ ENABLE_LATE_EVENTS = False
 # EVENT GENERATION
 # ==========================================
 
-EVENTS_PER_SECOND = 2
+EVENTS_PER_SECOND = 30
