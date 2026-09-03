@@ -4,7 +4,7 @@ from producer.event_generator import EventGenerator
 from producer.eventhub_producer import EventHubProducer
 
 
-TOTAL_SESSIONS = 100
+TOTAL_SESSIONS = 4000
 
 
 generator = EventGenerator()
