@@ -35,7 +35,7 @@ class BadDataInjector:
             event["event_time"] = "INVALID_TIMESTAMP"
 
         # Late Event
-        if random.random() < LATE_EVENT_PROBABILITY:
+        elif random.random() < LATE_EVENT_PROBABILITY:
             ts = datetime.fromisoformat(event["event_time"])
             event["event_time"] = (ts - timedelta(minutes=15)).isoformat()
 
