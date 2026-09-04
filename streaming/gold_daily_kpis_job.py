@@ -80,6 +80,17 @@ daily_kpis_df = (
         approx_count_distinct("user_id").alias("unique_users"),
         approx_count_distinct("session_id").alias("unique_sessions")
     )
+    .select(
+        col("window.start").alias("window_start"),
+        col("windo.end").alias("window_end"),
+        col("total_events"),
+        col("product_views"),
+        col("add_to_cart"),
+        col("purchases"),
+        col("revenue"),
+        col("unique_users"),
+        col("unique_sessions")
+    )
 )
 
 
