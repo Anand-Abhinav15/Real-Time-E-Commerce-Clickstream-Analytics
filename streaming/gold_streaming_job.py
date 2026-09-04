@@ -86,6 +86,17 @@ gold_df = (
         sum(when(col("event_type") == "purchase", col("price")).otherwise(0))
             .alias("revenue")
     )
+    .select(
+        col("window.start").alias("window_start"),
+        col("window.end").alias("window_end"),
+        col("product_id"),
+        col("product_name"),
+        col("category"),
+        col("product_views"),
+        col("add_to_cart"),
+        col("purchases"),
+        col("revenue")
+    )
 )
 
 
