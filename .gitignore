@@ -18,3 +18,5 @@ checkpoints/
 .DS_Store
 
 spark-warehouse/compose_resolved.txt
+
+credentials.txt
