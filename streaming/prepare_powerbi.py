@@ -107,7 +107,7 @@ daily_kpis_df = (
         count(when(col("event_type") == "product_view", True)).alias("product_views"),
         count(when(col("event_type") == "add_to_cart", True)).alias("add_to_cart"),
         count(when(col("event_type") == "purchase", True)).alias("purchases"),
-        sum(when(col("event_type") == col("price"), True).otherwise(0)).alias("revenue"),
+        sum(when(col("event_type") == "purchase", col("price")).otherwise(0)).alias("revenue"),
         countDistinct("user_id").alias("unique_users"),
         countDistinct("session_id").alias("unique_sessions")    
     )
