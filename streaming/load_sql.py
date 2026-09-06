@@ -150,7 +150,7 @@ with engine.connect() as connection:
 
     print(
         f"SQL connection successful: "
-        f"{result.scaler()}"
+        f"{result.scalar()}"
     )
 
 
@@ -206,11 +206,11 @@ with engine.connect() as connection:
 
     product_count = connection.execute(
         text("SELECT COUNT(*) FROM ProductTrends")
-    ).scaler()
+    ).scalar()
 
     kpi_count = connection.execute(
         text("SELECT COUNT(*) FROM DailyKPIs")
-    ).scaler()
+    ).scalar()
 
 
 print(f"ProductTrends rows: {product_count}")
