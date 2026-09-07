@@ -92,7 +92,7 @@ def shift_events_to_date(events, target_date):
         if parsed is None:
             continue 
 
-        shifted_timestamp = parsed + shifted 
+        shifted_timestamp = parsed + shift
 
         event["event_time"] = shifted_timestamp.isoformat()
 
