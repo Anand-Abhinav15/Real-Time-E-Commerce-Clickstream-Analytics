@@ -127,9 +127,7 @@ The platform was designed around the following analytical requirements:
 
 # 🏗️ High-Level Architecture
 
-![High-Level Architecture](docs/architecture/high_level_architecture.png)
-
-> **Screenshot placeholder:** `docs/architecture/high_level_architecture.png`
+<img width="662" height="482" alt="ClickStream Arch High_Level_diagram" src="https://github.com/user-attachments/assets/caafda95-de17-4bf5-915a-1312048c7cf8" />
 
 The major pipeline stages are:
 
@@ -155,9 +153,7 @@ Power BI
 
 # 🔬 Low-Level Architecture
 
-![Low-Level Architecture](docs/architecture/low_level_architecture.png)
-
-> **Screenshot placeholder:** `docs/architecture/low_level_architecture.png`
+<img width="1536" height="1024" alt="ClickStreamAnalytics_Architecture_Detailed" src="https://github.com/user-attachments/assets/e1291389-227f-44ed-9fc1-b2b255b824c5" />
 
 ### Detailed flow
 
@@ -627,15 +623,11 @@ These allow users to interactively filter the analytical views.
 
 # 📸 Dashboard Preview
 
-![Final Power BI Dashboard](docs/screenshots/13_powerbi_dashboard.png)
-
-> **Screenshot placeholder:** `docs/screenshots/13_powerbi_dashboard.png`
+<img width="1317" height="742" alt="_powerbi_dashboard" src="https://github.com/user-attachments/assets/22670436-6bc9-446d-9a88-278bb15e7051" />
 
 ### Dashboard with filters
 
-![Power BI Dashboard Filters](docs/screenshots/14_powerbi_filters.png)
-
-> **Screenshot placeholder:** `docs/screenshots/14_powerbi_filters.png`
+<img width="1317" height="741" alt="_powerbi_filters" src="https://github.com/user-attachments/assets/1da38525-3c69-4851-bafc-37f998f5a694" />
 
 ---
 
@@ -757,9 +749,7 @@ No direct insertion into the analytical tables was used for this enrichment.
 
 # 🧪 Load Test Screenshot
 
-![Historical Load Test](docs/screenshots/02_generator_running.png)
-
-> **Screenshot placeholder:** Replace this with the appropriate load-test screenshot if a separate image was captured.
+<img width="1397" height="741" alt="_generator_running" src="https://github.com/user-attachments/assets/0c4b1c69-6ded-4661-993d-96faad1501bc" />
 
 ---
 
@@ -769,23 +759,17 @@ The pipeline was validated at multiple stages.
 
 ## Event Generation
 
-![Generator Running](docs/screenshots/02_generator_running.png)
-
-> **Screenshot placeholder:** `docs/screenshots/02_generator_running.png`
+<img width="1397" height="741" alt="_generator_running" src="https://github.com/user-attachments/assets/6b5dca9e-cd1e-4fcb-8ce1-b02b22aae6b3" />
 
 ---
 
 ## Event Hubs
 
-![Event Hubs Overview](docs/screenshots/03_eventhub_overview.png)
-
-> **Screenshot placeholder:** `docs/screenshots/03_eventhub_overview.png`
+<img width="1615" height="780" alt="_eventhub_overview" src="https://github.com/user-attachments/assets/a91b3414-f31a-4fd2-911d-ae35905ed42f" />
 
 ### Event ingestion metrics
 
-![Event Hubs Metrics](docs/screenshots/04_eventhub_metrics.png)
-
-> **Screenshot placeholder:** `docs/screenshots/04_eventhub_metrics.png`
+<img width="1617" height="817" alt="_eventhub_metrics" src="https://github.com/user-attachments/assets/95c7ca51-7bc0-41f2-9c7c-4d47c83858c4" />
 
 ---
 
@@ -793,27 +777,23 @@ The pipeline was validated at multiple stages.
 
 ### Containers
 
-![ADLS Containers](docs/screenshots/05_adls_containers.png)
-
-> **Screenshot placeholder:** `docs/screenshots/05_adls_containers.png`
+<img width="1617" height="787" alt="_adls_containers" src="https://github.com/user-attachments/assets/a25c9b24-0ddf-4393-89e5-b054225ae21e" />
 
 ### Bronze
 
-![Bronze Data](docs/screenshots/06_bronze_data.png)
-
-> **Screenshot placeholder:** `docs/screenshots/06_bronze_data.png`
+<img width="1612" height="815" alt="_bronze_data" src="https://github.com/user-attachments/assets/7edbc418-cd58-4d8a-bd3d-d847cf26d6a2" />
 
 ### Silver and Quarantine
 
-![Silver and Quarantine](docs/screenshots/07_silver_quarantine.png)
+<img width="1611" height="816" alt="_silver_data" src="https://github.com/user-attachments/assets/2751a517-fe4f-4cb8-a3ca-691ce0490ab5" />
 
-> **Screenshot placeholder:** `docs/screenshots/07_silver_quarantine.png`
+<img width="1597" height="816" alt="_quarantine_data" src="https://github.com/user-attachments/assets/a7333bb9-5a5e-4693-868c-f296fda8dc0b" />
 
 ### Gold
 
-![Gold Outputs](docs/screenshots/08_gold_outputs.png)
+<img width="1617" height="805" alt="_gold_outputs_powerbi" src="https://github.com/user-attachments/assets/6e0db9a3-bd03-452b-9cf8-fb276c8eb479" />
 
-> **Screenshot placeholder:** `docs/screenshots/08_gold_outputs.png`
+<img width="1607" height="815" alt="_gold_outputs_productTrends" src="https://github.com/user-attachments/assets/5cb08995-1710-48f8-bb2a-a09247aeb524" />
 
 ---
 
@@ -821,29 +801,23 @@ The pipeline was validated at multiple stages.
 
 ### Dockerized Spark Services
 
-![Spark Containers](docs/screenshots/09_spark_containers.png)
-
-> **Screenshot placeholder:** `docs/screenshots/09_spark_containers.png`
+<img width="1380" height="295" alt="_spark_containers" src="https://github.com/user-attachments/assets/b6340403-0b51-46b1-afd3-e181984fce8e" />
 
 ### Spark Processing
 
-![Spark Processing](docs/screenshots/10_spark_processing.png)
+<img width="1545" height="812" alt="_spark_processing_silver" src="https://github.com/user-attachments/assets/9abc7971-cf3c-42d5-89df-aef113a70938" />
 
-> **Screenshot placeholder:** `docs/screenshots/10_spark_processing.png`
+<img width="1547" height="812" alt="_spark_processing_gold" src="https://github.com/user-attachments/assets/c88873d3-3d25-4271-9044-1c982e123771" />
 
 ---
 
 ## Azure SQL
 
-![Azure SQL](docs/screenshots/11_azure_sql.png)
-
-> **Screenshot placeholder:** `docs/screenshots/11_azure_sql.png`
+<img width="1630" height="812" alt="_azure_sql" src="https://github.com/user-attachments/assets/c09d2193-6a57-4ea7-9387-317b3881e30a" />
 
 ### SQL Results
 
-![SQL Results](docs/screenshots/12_sql_results.png)
-
-> **Screenshot placeholder:** `docs/screenshots/12_sql_results.png`
+<img width="1631" height="817" alt="_sql_results" src="https://github.com/user-attachments/assets/da6770cc-a0a5-41ee-b9a5-9a1f7d2829a5" />
 
 ---
 
@@ -1388,69 +1362,8 @@ The project was validated across the complete pipeline.
 
 ---
 
-# 📸 21. Project Screenshots
 
-The following screenshots document the implementation.
-
-## Architecture
-
-![High-Level Architecture](docs/architecture/high_level_architecture.png)
-
-![Low-Level Architecture](docs/architecture/low_level_architecture.png)
-
----
-
-## Source Generator
-
-![Generator Running](docs/screenshots/02_generator_running.png)
-
----
-
-## Azure Event Hubs
-
-![Event Hubs Overview](docs/screenshots/03_eventhub_overview.png)
-
-![Event Hubs Metrics](docs/screenshots/04_eventhub_metrics.png)
-
----
-
-## ADLS Gen2
-
-![ADLS Containers](docs/screenshots/05_adls_containers.png)
-
-![Bronze Data](docs/screenshots/06_bronze_data.png)
-
-![Silver and Quarantine](docs/screenshots/07_silver_quarantine.png)
-
-![Gold Outputs](docs/screenshots/08_gold_outputs.png)
-
----
-
-## Spark
-
-![Spark Containers](docs/screenshots/09_spark_containers.png)
-
-![Spark Processing](docs/screenshots/10_spark_processing.png)
-
----
-
-## Azure SQL
-
-![Azure SQL](docs/screenshots/11_azure_sql.png)
-
-![SQL Results](docs/screenshots/12_sql_results.png)
-
----
-
-## Power BI
-
-![Final Power BI Dashboard](docs/screenshots/13_powerbi_dashboard.png)
-
-![Power BI Dashboard Filters](docs/screenshots/14_powerbi_filters.png)
-
----
-
-# 🚀 22. How to Run
+# 🚀 21. How to Run
 
 ## Prerequisites
 
@@ -1589,7 +1502,7 @@ Open the Power BI report and refresh the dataset.
 
 ---
 
-# 🔮 23. Future Improvements
+# 🔮 22. Future Improvements
 
 The current implementation is intentionally scoped as an intermediate/portfolio project.
 
@@ -1669,7 +1582,7 @@ Add:
 
 ---
 
-# 🧠 24. Key Learning Outcomes
+# 🧠 23. Key Learning Outcomes
 
 This project provided hands-on experience with:
 
@@ -1724,7 +1637,7 @@ This project provided hands-on experience with:
 
 ---
 
-# 🏁 25. Conclusion
+# 🏁 24. Conclusion
 
 The **Real-Time E-Commerce Clickstream Analytics Platform** demonstrates a complete cloud-based Data Engineering workflow:
 
